@@ -2,6 +2,10 @@ import requests
 
 
 def main():
+    r = requests.get('http://localhost:8080/reportingStructure/16a596ae-edd3-4847-99fe-c4518e82c86f')
+    print(r)
+
+
     data = {
         "employeeId": '327654gfdjhgfgdsgf2354',
         "firstName": 'test',
@@ -29,6 +33,9 @@ def main():
 
     r = requests.post('http://localhost:8080/compensation', json=data)
     print(r.content)
+
+    r = requests.get('http://localhost:8080/compensation/employee/327654gfdjhgff2gdhss354')
+    print(r)
 
 
 if __name__ == "__main__":
