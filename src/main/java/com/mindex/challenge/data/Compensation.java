@@ -16,7 +16,7 @@ public class Compensation {
 
     private Employee employee;
     private int salary;
-    private LocalDate effectiveDate;
+    private LocalDate date;
 
     public Compensation() {
     }
@@ -29,12 +29,12 @@ public class Compensation {
         this.compensationID = compensationID;
     }
 
-    public LocalDate getEffectiveDate() {
-        return effectiveDate;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setEffectiveDate(LocalDate date) {
-        this.effectiveDate = date;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public Employee getEmployee() {

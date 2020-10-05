@@ -25,7 +25,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         LOG.debug("Creating employee [{}]", employee);
 
         employee.setEmployeeId(UUID.randomUUID().toString());
-        System.out.println(employee.getEmployeeId() + employee.getFirstName() +employee.getDirectReports() +employee.getLastName()+employee.getDepartment()+employee.getPosition());
         employeeRepository.insert(employee);
 
         return employee;
@@ -53,13 +52,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public ReportingStructure getReportingStructure(String employee_id) throws NullPointerException {
-        if (employee_id == null && employee_id.isEmpty()) {
-            throw new NullPointerException("Employee id is null.");
+        if (employee_id == null || employee_id.isEmpty()) {
+            throw new NullPointerException("Passed Employee ID is null");
         } else {
             Employee employee = employeeRepository.findByEmployeeId(employee_id);
 
             if (employee == null) {
-                throw  new NullPointerException("Employee could not be found!");
+                throw new NullPointerException("Employee could not be found!");
             } else {
                 ReportingStructure reportingStructure = new ReportingStructure();
                 reportingStructure.setEmployee(employee);
@@ -78,10 +77,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         List<Employee> directReports = employee.getDirectReports();
 
-        if(directReports.isEmpty() || directReports == null) {
-            return count;
-        } else {
-            for(Employee directReport : directReports) {
+        // iteratively goes through all the reports and their reports and so on....
+        if (!(directReports == null || directReports.isEmpty())) {
+            for (Employee directReport : directReports) {
                 count += getNumberReporting(directReport.getEmployeeId()) + 1;
             }
         }

@@ -37,7 +37,8 @@ public class CompensationServiceImpl implements CompensationService {
 
         compensation.setCompensationID(UUID.randomUUID().toString()); // assigns random ID to compensation to help find later
         compensationRepository.insert(compensation); // puts new compensation into the DB
-        System.out.println("hehhehehehehhehe    " + compensation.getEmployee().getEmployeeId() + "   " + compensation.getSalary()  + compensation.getEffectiveDate());
+        LOG.debug("Successfully made Compensation for employee: [{}]", compensation.getEmployee().getEmployeeId());
+
         return compensation;
     }
 }
